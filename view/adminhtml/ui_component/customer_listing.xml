@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+
+    <columns name="customer_columns">
+        <column name="fraud_risk_flag"
+        sortOrder="100"
+        component="Magento_Ui/js/grid/columns/select">
+    <settings>
+        <label translate="true">Fraud Flag</label>
+        <dataType>select</dataType>
+        <filter>select</filter>
+        <options class="Magento\Config\Model\Config\Source\Yesno"/>
+        <visible>true</visible>
+    </settings>
+</column>
+    </columns>
+</listing>

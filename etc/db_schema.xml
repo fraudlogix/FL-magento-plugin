@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+
+    <table name="sales_order" resource="default" engine="innodb" comment="Sales Order">
+        <column xsi:type="text"    name="fraud_risk_data" nullable="true"  comment="Fraud Risk JSON"/>
+        <column xsi:type="smallint" name="fraud_risk_flag" nullable="false" default="0" comment="Potential Fraud Flag"/>
+    </table>
+
+</schema>

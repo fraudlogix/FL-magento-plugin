@@ -1,0 +1,144 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+
+    <system>
+        <tab id="fraudlogix" translate="label" sortOrder="990">
+            <label>FraudLogix</label>
+        </tab>
+
+        <section id="fraudlogix" translate="label" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>FraudLogix Settings</label>
+            <tab>fraudlogix</tab>
+            <resource>FraudLogix_Core::config</resource>
+
+            <group id="general" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General Settings</label>
+
+                <field id="enabled" translate="label comment" sortOrder="10" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable FraudLogix</label>
+                    <comment>Enable or disable the FraudLogix service.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="api_key" translate="label comment" sortOrder="20" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>API Key</label>
+                    <comment>Your FraudLogix API key.</comment>
+                    <validate>required-entry</validate>
+                </field>
+            </group>
+
+            <group id="actions" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Actions regarding registration, order or login events</label>
+
+                <field id="registration_low_level_risk" translate="label comment" sortOrder="10" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Registration Low Level Risk</label>
+                    <comment>Action for low level risk event on registration.</comment>
+                    <source_model>FraudLogix\Core\Model\Config\Action</source_model>
+                </field>
+
+                <field id="registration_medium_level_risk" translate="label comment" sortOrder="20" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Registration Medium Level Risk</label>
+                    <comment>Action for medium level risk event on registration.</comment>
+                    <source_model>FraudLogix\Core\Model\Config\Action</source_model>
+                </field>
+
+                <field id="registration_high_level_risk" translate="label comment" sortOrder="30" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Registration High Level Risk</label>
+                    <comment>Action for high level risk event on registration.</comment>
+                    <source_model>FraudLogix\Core\Model\Config\Action</source_model>
+                </field>
+
+                <field id="registration_extreme_level_risk" translate="label comment" sortOrder="40" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Registration Extreme Level Risk</label>
+                    <comment>Action for extreme level risk event on registration.</comment>
+                    <source_model>FraudLogix\Core\Model\Config\Action</source_model>
+                </field>
+
+                <field id="order_low_level_risk" translate="label comment" sortOrder="50" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Order Low Level Risk</label>
+                    <comment>Action for low level risk event on order.</comment>
+                    <source_model>FraudLogix\Core\Model\Config\Action</source_model>
+                </field>
+
+                <field id="order_medium_level_risk" translate="label comment" sortOrder="60" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Order Medium Level Risk</label>
+                    <comment>Action for medium level risk event on order.</comment>
+                    <source_model>FraudLogix\Core\Model\Config\Action</source_model>
+                </field>
+
+                <field id="order_high_level_risk" translate="label comment" sortOrder="70" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Order High Level Risk</label>
+                    <comment>Action for high level risk event on order.</comment>
+                    <source_model>FraudLogix\Core\Model\Config\Action</source_model>
+                </field>
+
+                <field id="order_extreme_level_risk" translate="label comment" sortOrder="80" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Order Extreme Level Risk</label>
+                    <comment>Action for extreme level risk event on order.</comment>
+                    <source_model>FraudLogix\Core\Model\Config\Action</source_model>
+                </field>
+
+                <field id="login_low_level_risk" translate="label comment" sortOrder="90" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Login Low Level Risk</label>
+                    <comment>Action for low level risk event on login.</comment>
+                    <source_model>FraudLogix\Core\Model\Config\Action</source_model>
+                </field>
+
+                <field id="login_medium_level_risk" translate="label comment" sortOrder="100" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Login Medium Level Risk</label>
+                    <comment>Action for medium level risk event on login.</comment>
+                    <source_model>FraudLogix\Core\Model\Config\Action</source_model>
+                </field>
+
+                <field id="login_high_level_risk" translate="label comment" sortOrder="110" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Login High Level Risk</label>
+                    <comment>Action for high level risk event on login.</comment>
+                    <source_model>FraudLogix\Core\Model\Config\Action</source_model>
+                </field>
+
+                <field id="login_extreme_level_risk" translate="label comment" sortOrder="120" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Login Extreme Level Risk</label>
+                    <comment>Action for extreme level risk event on login.</comment>
+                    <source_model>FraudLogix\Core\Model\Config\Action</source_model>
+                </field>
+            </group>
+
+            <group id="logging" translate="label" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Logging Settings</label>
+
+                <field id="enable_logging" translate="label comment" sortOrder="10" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Logging</label>
+                    <comment>Enable or disable logging for FraudLogix events.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="log_file_path" translate="label comment" sortOrder="20" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Log File Path</label>
+                    <comment>Path to the log file for FraudLogix logs.</comment>
+                </field>
+
+                <field id="log_level" translate="label comment" sortOrder="30" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Log Level</label>
+                    <comment>Set the log level for FraudLogix logs.</comment>
+                    <source_model>FraudLogix\Core\Model\Config\LogLevel</source_model>
+                </field>
+            </group>
+
+            <group id="dev" translate="label" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Development Settings</label>
+                <field id="enable_dev_mode" translate="label comment" sortOrder="10" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Development Mode</label>
+                    <comment>Enable or disable development mode for FraudLogix.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="dev_ip" translate="label comment" sortOrder="20" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Development IP</label>
+                    <comment>IP address for development mode access.</comment>
+                    <validate>validate-ip</validate>
+                </field>
+            </group>
+
+        </section>
+    </system>
+</config>

@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <type name="FraudLogix\Core\Logger\Logger">
+        <arguments>
+            <argument name="handler" xsi:type="object">FraudLogix\Core\Logger\Handler</argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Checkout\Controller\Onepage\Success">
+        <plugin name="аraudдogix_success_guard"
+                type="FraudLogix\Core\Plugin\SuccessGuard"
+                sortOrder="10"/>
+    </type>
+    <type name="Magento\Checkout\Controller\Onepage\Failure">
+        <plugin name="аraudдogix_failure_guard"
+                type="FraudLogix\Core\Plugin\SuccessGuard"
+                sortOrder="10"/>
+    </type>
+
+    <type name="Magento\Customer\Api\AccountManagementInterface">
+        <plugin name="fraudlogix_block_registration"
+                type="FraudLogix\Core\Plugin\Account\RegistrationGuard"
+                sortOrder="10"/>
+    </type>
+
+    <type name="Magento\Customer\Api\AccountManagementInterface">
+        <plugin name="fraudlogix_login_guard_authenticate"
+                type="FraudLogix\Core\Plugin\Account\LoginGuard"
+                sortOrder="10"/>
+    </type>
+
+    <type name="Magento\Integration\Api\CustomerTokenServiceInterface">
+        <plugin name="fraudlogix_login_guard_token"
+                type="FraudLogix\Core\Plugin\Account\TokenLoginGuard"
+                sortOrder="10"/>
+    </type>
+    
+</config>

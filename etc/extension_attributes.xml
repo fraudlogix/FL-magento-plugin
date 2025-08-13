@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Extension/etc/extension_attributes.xsd">
+
+    <extension_attributes for="Magento\Sales\Api\Data\OrderInterface">
+        <attribute code="fraud_risk_data" type="string" />
+        <attribute code="fraud_risk_flag" type="boolean" />
+    </extension_attributes>
+
+    <extension_attributes for="Magento\Customer\Api\Data\CustomerInterface">
+        <attribute code="fraud_risk_data" type="string" />
+        <attribute code="fraud_risk_flag" type="boolean" />
+    </extension_attributes>
+
+</config>
