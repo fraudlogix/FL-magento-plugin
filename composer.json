@@ -1,0 +1,19 @@
+{
+  "name": "fraudlogix/module-core",
+  "description": "Core module for implementing FraudLogix in Magento 2",
+  "type": "magento2-module",
+  "version": "1.0.0",
+  "license": "Apache-2.0",
+  "require": {
+    "php": ">=7.4",
+    "magento/framework": ">=103.0.0"
+  },
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "FraudLogix\\Core\\": ""
+    }
+  }
+}
