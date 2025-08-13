@@ -96,7 +96,7 @@ Production mode (recommended for live sites):
 ```bash
 bin/magento setup:static-content:deploy
 ```
-```
+
 
 ## Troubleshooting
 ### Module not found / not listed
