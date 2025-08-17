@@ -1,0 +1,48 @@
+<?php
+/** @var $block \FraudLogix\Core\Block\Adminhtml\Customer\Fraud */
+$data = $block->getRiskData();
+$flag = $block->getFlag();
+?>
+<div class="messages" style="margin-bottom: 12px;">
+    <?php if ($flag === 1): ?>
+        <div class="message message-warning">
+            <div><?= $block->escapeHtml(__('Customer is flagged as potential fraudster.')) ?></div>
+        </div>
+    <?php endif; ?>
+</div>
+
+<div class="admin__fieldset">
+    <div class="admin__legend"><span><?= $block->escapeHtml(__('Fraud Risk')) ?></span></div>
+    <?php if (!$data): ?>
+        <p><?= $block->escapeHtml(__('No fraud data.')) ?></p>
+    <?php else: ?>
+        <table class="admin__table-secondary">
+            <tbody>
+            <?php
+            $map = [
+                'IP'              => __('IP'),
+                'RiskScore'       => __('Risk Score'),
+                'Proxy'           => __('Proxy'),
+                'VPN'             => __('VPN'),
+                'DataCenter'      => __('Data Center'),
+                'TOR'             => __('TOR'),
+                'MaskedDevices'   => __('Masked Device'),
+                'SearchEngineBot' => __('Search Engine Bot'),
+                'AbnormalTraffic' => __('Abnormal Traffic'),
+                'ASN'             => __('ASN'),
+                'Organization'    => __('Organization'),
+                'ISP'             => __('ISP'),
+            ];
+            $shown = [];
+            foreach ($map as $key => $label) {
+                if (isset($data[$key])) {
+                    $val = ($data[$key] === false || $data[$key] === true) ? ($data[$key] ? 'Yes' : 'No') : (is_array($data[$key]) ? json_encode($data[$key], JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES) : (string)$data[$key]);
+                    echo '<tr><th>'.$block->escapeHtml($label).'</th><td>'.$block->escapeHtml($val).'</td></tr>';
+                    $shown[$key] = true;
+                }
+            }
+            ?>
+            </tbody>
+        </table>
+    <?php endif; ?>
+</div>

@@ -20,27 +20,27 @@ use Magento\Framework\HTTP\PhpEnvironment\RemoteAddress;
 class SuccessGuard
 {
     /** @var RedirectFactory */
-    protected $resultRedirectFactory;
+    protected RedirectFactory $resultRedirectFactory;
     /** @var StoreManagerInterface */
-    protected $storeManager;
+    protected StoreManagerInterface $storeManager;
     /** @var Cart */
-    protected $cart;
+    protected Cart $cart;
     /** @var CheckoutSession */
-    protected $checkoutSession;
+    protected CheckoutSession $checkoutSession;
     /** @var OrderRepositoryInterface */
-    protected $orderRepository;
+    protected OrderRepositoryInterface $orderRepository;
     /** @var Config */
-    protected $config;
+    protected Config $config;
     /** @var OrderManagementInterface */
-    protected $orderManagement;
+    protected OrderManagementInterface $orderManagement;
     /** @var ApiHelper */
-    protected $apiHelper;
+    protected ApiHelper $apiHelper;
     /** @var RequestInterface */
-    protected $request;
+    protected RequestInterface $request;
     /** @var RemoteAddress */
-    protected $remoteAddress;
+    protected RemoteAddress $remoteAddress;
     /** @var Logger */
-    protected $logger;
+    protected Logger $logger;
 
 
     public function __construct(
@@ -99,6 +99,12 @@ class SuccessGuard
         return $proceed();
     }
 
+    /**
+     * Check if the risk data indicates a block decision
+     *
+     * @param string|null $riskJson
+     * @return bool
+     */
     private function isBlocked(?string $riskJson): bool
     {
         if ($riskJson) {
@@ -111,6 +117,12 @@ class SuccessGuard
         return false;
     }
 
+    /**
+     * Update the order with risk data and determine the action based on risk score
+     *
+     * @param $order
+     * @return string
+     */
     private function updateOrder($order) {
         $ip = (string)($this->apiHelper->getClientIp() ?? '');
         $riskData = $this->apiHelper->fetchData('', $ip, 'order_place');
@@ -126,7 +138,7 @@ class SuccessGuard
             $actionMethod = $riskLevels[$riskData['RiskScore']];
             $action = $this->config->$actionMethod();
             if ($action <= 1) {
-                $order->setStatus('fraud_review'); // Set fraud risk flag
+                $order->setStatus('fraud_review');
                 $order->setData('fraud_risk_flag', 1);
             }
             if ($action === 0) {
@@ -134,16 +146,15 @@ class SuccessGuard
                 $order->setStatus('canceled'); 
                 $this->orderRepository->save($order);
                 $this->orderManagement->cancel($order->getId());
-
-                return 'block'; // Exit if the order is blocked
+                return 'block';
             }
             if ($action > 1) {
-                return 'allow'; // Default action if no risk level matched
+                return 'allow';
             }
             $order->setData('fraud_risk_data', json_encode($riskData));
             $this->orderRepository->save($order);
             return 'alert';
     }
-        return 'allow'; // Default action if no risk level matched
+        return 'allow';
     }
 }

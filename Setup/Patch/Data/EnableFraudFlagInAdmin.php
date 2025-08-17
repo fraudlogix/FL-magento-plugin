@@ -9,10 +9,22 @@ use Magento\Framework\Setup\Patch\DataPatchInterface;
 
 class EnableFraudFlagInAdmin implements DataPatchInterface
 {
+    /**
+     * @var CustomerSetupFactory
+     */
+    private CustomerSetupFactory $customerSetupFactory;
+    /**
+     * @var ModuleDataSetupInterface
+     */
+    private ModuleDataSetupInterface $moduleDataSetup;
+
     public function __construct(
-        private ModuleDataSetupInterface $moduleDataSetup,
-        private CustomerSetupFactory $customerSetupFactory
-    ) {}
+        ModuleDataSetupInterface $moduleDataSetup,
+        CustomerSetupFactory $customerSetupFactory
+    ) {
+        $this->moduleDataSetup = $moduleDataSetup;
+        $this->customerSetupFactory = $customerSetupFactory;
+    }
 
     public function apply()
     {

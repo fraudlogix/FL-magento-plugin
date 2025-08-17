@@ -8,11 +8,28 @@ use Magento\Sales\Model\ResourceModel\Order\Status as StatusResource;
 
 class AddOrderFraudReviewStatus implements DataPatchInterface
 {
+    /**
+     * @var ModuleDataSetupInterface
+     */
+    private ModuleDataSetupInterface $setup;
+    /**
+     * @var StatusFactory
+     */
+    private StatusFactory $statusFactory;
+    /**
+     * @var StatusResource
+     */
+    private StatusResource $statusResource;
+
     public function __construct(
-        private ModuleDataSetupInterface $setup,
-        private StatusFactory $statusFactory,
-        private StatusResource $statusResource
-    ) {}
+        ModuleDataSetupInterface $setup,
+        StatusFactory $statusFactory,
+        StatusResource $statusResource
+    ) {
+        $this->setup = $setup;
+        $this->statusFactory = $statusFactory;
+        $this->statusResource = $statusResource;
+    }
 
     public function apply()
     {

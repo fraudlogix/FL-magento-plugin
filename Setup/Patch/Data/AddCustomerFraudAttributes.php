@@ -9,8 +9,14 @@ use Magento\Customer\Setup\CustomerSetupFactory;
 
 class AddCustomerFraudAttributes implements DataPatchInterface
 {
+    /**
+     * @var ModuleDataSetupInterface
+     */
     private ModuleDataSetupInterface $setup;
-    private CustomerSetupFactory    $customerSetupFactory;
+    /**
+     * @var CustomerSetupFactory
+     */
+    private CustomerSetupFactory $customerSetupFactory;
 
     public function __construct(
         ModuleDataSetupInterface $setup,

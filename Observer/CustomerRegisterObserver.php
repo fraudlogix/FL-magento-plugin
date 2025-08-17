@@ -30,7 +30,7 @@ class CustomerRegisterObserver implements ObserverInterface
     public function execute(Observer $observer)
     {
         if (!$this->config->isEnabled()) {
-            return; // Exit if the module is disabled
+            return; 
         }
         /** @var \Magento\Customer\Api\Data\CustomerInterface $customer */
         $customer = $observer->getEvent()->getCustomer();

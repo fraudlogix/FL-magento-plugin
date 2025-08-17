@@ -67,7 +67,7 @@ class OrderPlaceAfterObserver implements ObserverInterface
             $riskData['Descision'] = 'ALLOW';
             if ($action <= 1) {
                 $riskData['Descision'] = 'ALERT';
-                $order->setStatus('fraud_review'); // Set fraud risk flag
+                $order->setStatus('fraud_review');
                 $order->setData('fraud_risk_flag', 1);
             }
             if ($action === 0) {
@@ -75,7 +75,7 @@ class OrderPlaceAfterObserver implements ObserverInterface
                 $order->setData('fraud_risk_data', json_encode($riskData));
                 $this->orderRepository->save($order);
                 $this->orderManagement->cancel($order->getId());
-                return; // Exit if the order is blocked
+                return;
             }
             $order->setData('fraud_risk_data', json_encode($riskData));
             $this->orderRepository->save($order);

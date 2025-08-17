@@ -30,7 +30,7 @@ class CustomerLoginObserver implements ObserverInterface
     public function execute(Observer $observer)
     {
         if (!$this->config->isEnabled()) {
-            return; // Exit if the module is disabled
+            return;
         }
         /** @var \Magento\Customer\Model\Customer $customer */
         $customer = $observer->getEvent()->getCustomer();
@@ -63,6 +63,6 @@ class CustomerLoginObserver implements ObserverInterface
                     403 // HTTP 403 Forbidden
                 );
             }
-        }  
+        }        
     }
 }

@@ -35,7 +35,7 @@ class ApiHelper extends AbstractHelper
      *
      * @return string
      */
-    public function getApiEndpoint()
+    public function getApiEndpoint(): string
     {
         return 'https://iplist.fraudlogix.com/v5';
     }
@@ -45,7 +45,7 @@ class ApiHelper extends AbstractHelper
      *
      * @return string
      */
-    public function getClientIp()
+    public function getClientIp(): string
     {
         if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
             // HTTP_X_FORWARDED_FOR can contain multiple IPs, take the first one 
@@ -62,12 +62,12 @@ class ApiHelper extends AbstractHelper
      *
      * @return string|null
      */
-    public function getApiKey()
+    public function getApiKey(): ?string
     {
         return $this->scopeConfig->getValue('fraudlogix/general/api_key', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
     }
 
-    public function fetchData($endpoint, $ip, $event = 'none')
+    public function fetchData($endpoint, $ip, $event = 'none'): array
     {
         if (!$this->config->isEnabled()) {
             $this->logger->info('FraudLogix API is disabled. Skipping data fetch for event: ' . $event);

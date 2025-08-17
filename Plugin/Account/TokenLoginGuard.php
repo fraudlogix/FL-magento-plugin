@@ -17,31 +17,31 @@ class TokenLoginGuard
     /**
      * @var RemoteAddress
      */
-    protected $remoteAddress;
+    protected RemoteAddress $remoteAddress;
     /**
      * @var Config
      */
-    protected $config;
+    protected Config $config;
     /**
      * @var ApiHelper
      */
-    protected $apiHelper;
+    protected ApiHelper $apiHelper;
     /**
      * @var CustomerRepositoryInterface
      */
-    protected $customerRepository;
+    protected CustomerRepositoryInterface $customerRepository;
     /**
      * @var CustomerResource
      */
-    protected $customerResource;
+    protected CustomerResource $customerResource;
     /**
      * @var CustomerFactory
      */
-    protected $customerFactory;
+    protected CustomerFactory $customerFactory;
     /**
      * @var Logger
      */
-    protected $logger;
+    protected Logger $logger;
 
     public function __construct(
         RemoteAddress $remoteAddress,
@@ -77,6 +77,11 @@ class TokenLoginGuard
         return $customer;
     }
 
+    /**
+     * @param string $customer
+     * @return string
+     * @throws LocalizedException
+     */
     private function guard(CustomerInterface $customer)
     {
         if (!$this->config->isEnabled()) {

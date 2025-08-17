@@ -17,31 +17,31 @@ class RegistrationGuard
     /**
      * @var RemoteAddress
      */
-    protected $remoteAddress;
+    protected RemoteAddress $remoteAddress;
     /**
      * @var Config
      */
-    protected $config;
+    protected Config $config;
     /**
      * @var ApiHelper
      */
-    protected $apiHelper;
+    protected ApiHelper $apiHelper;
     /**
      * @var CustomerRepositoryInterface
      */
-    protected $customerRepository;
+    protected CustomerRepositoryInterface $customerRepository;
     /**
      * @var CustomerResource
      */
-    protected $customerResource;
+    protected CustomerResource $customerResource;
     /**
      * @var CustomerFactory
      */
-    protected $customerFactory;
+    protected CustomerFactory $customerFactory;
     /**
      * @var Logger
      */
-    protected $logger;
+    protected Logger $logger;
 
 
     public function __construct(
@@ -101,12 +101,17 @@ class RegistrationGuard
         return $customer;
     }
 
-     private function guard(CustomerInterface $customer)
+    /**
+     * @param CustomerInterface $customer
+     * @return array
+     * @throws LocalizedException
+     */
+    private function guard(CustomerInterface $customer)
     {
         $flag = 0;
         $data = [];
         if (!$this->config->isEnabled()) {
-            return $customer; // Exit if the module is disabled
+            return $customer;
         }
         $ip = (string)($this->apiHelper->getClientIp() ?? '');
         try {
