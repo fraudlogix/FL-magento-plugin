@@ -17,8 +17,10 @@ use Magento\Framework\App\RequestInterface;
 use Magento\Framework\HTTP\PhpEnvironment\RemoteAddress;
 
 
-class SuccessGuard
+class SuccessGuard extends \FraudLogix\Core\Plugin\AbstractGuard
 {
+    protected $guadType = Config::XML_PATH_ACTION_CHECKOUT;
+
     /** @var RedirectFactory */
     protected RedirectFactory $resultRedirectFactory;
     /** @var StoreManagerInterface */
@@ -30,7 +32,7 @@ class SuccessGuard
     /** @var OrderRepositoryInterface */
     protected OrderRepositoryInterface $orderRepository;
     /** @var Config */
-    protected Config $config;
+    // protected Config $config;
     /** @var OrderManagementInterface */
     protected OrderManagementInterface $orderManagement;
     /** @var ApiHelper */
@@ -61,12 +63,13 @@ class SuccessGuard
         $this->cart = $cart;
         $this->checkoutSession = $checkoutSession;
         $this->orderRepository = $orderRepository;
-        $this->config = $config;
+        // $this->config = $config;
         $this->orderManagement = $orderManagement;
         $this->apiHelper = $apiHelper;
         $this->request = $request;
         $this->remoteAddress = $remoteAddress;
         $this->logger = $logger;
+        parent::__construct($config);
     }
 
     public function aroundExecute($subject, callable $proceed)
@@ -137,6 +140,7 @@ class SuccessGuard
         if (isset($riskLevels[$riskData['RiskScore']])) {
             $actionMethod = $riskLevels[$riskData['RiskScore']];
             $action = $this->config->$actionMethod();
+            $action = min($this->guardBoolean($riskData), $action);
             if ($action <= 1) {
                 $order->setStatus('fraud_review');
                 $order->setData('fraud_risk_flag', 1);
@@ -146,6 +150,7 @@ class SuccessGuard
                 $order->setStatus('canceled'); 
                 $this->orderRepository->save($order);
                 $this->orderManagement->cancel($order->getId());
+
                 return 'block';
             }
             if ($action > 1) {

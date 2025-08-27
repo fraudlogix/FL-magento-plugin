@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/config.xsd">
+
+    <default>
+        <fraudlogix>
+            <general>
+                <enabled>0</enabled>
+                <api_key></api_key>
+            </general>
+
+            <actions>
+                <registration>
+                    <medium_level_risk>1</medium_level_risk>
+                    <high_level_risk>0</high_level_risk>
+                    <extreme_level_risk>0</extreme_level_risk>
+                    <masked_device>1</masked_device>
+                    <proxy>1</proxy>
+                    <tor>1</tor>
+                    <vpn>1</vpn>
+                    <data_center>1</data_center>
+                    <search_engine_bot>1</search_engine_bot>
+                    <abnormal_traffic>1</abnormal_traffic>
+                </registration>
+
+                <order>
+                    <medium_level_risk>1</medium_level_risk>
+                    <high_level_risk>0</high_level_risk>
+                    <extreme_level_risk>0</extreme_level_risk>
+                    <masked_device>1</masked_device>
+                    <proxy>1</proxy>
+                    <tor>1</tor>
+                    <vpn>1</vpn>
+                    <data_center>1</data_center>
+                    <search_engine_bot>1</search_engine_bot>
+                    <abnormal_traffic>1</abnormal_traffic>
+                </order>
+
+                <login>
+                    <medium_level_risk>1</medium_level_risk>
+                    <high_level_risk>0</high_level_risk>
+                    <extreme_level_risk>0</extreme_level_risk>
+                    <masked_device>1</masked_device>
+                    <proxy>1</proxy>
+                    <tor>1</tor>
+                    <vpn>1</vpn>
+                    <data_center>1</data_center>
+                    <search_engine_bot>1</search_engine_bot>
+                    <abnormal_traffic>1</abnormal_traffic>
+                </login>
+            </actions>
+
+            <logging>
+                <enable_logging>0</enable_logging>
+                <log_file_path>fraudlogix.log</log_file_path>
+                <log_level>0</log_level>
+            </logging>
+
+            <dev>
+                <enable_dev_mode>0</enable_dev_mode>
+                <dev_ip></dev_ip>
+            </dev>
+        </fraudlogix>
+    </default>
+</config>

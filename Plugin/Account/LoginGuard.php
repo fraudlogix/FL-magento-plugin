@@ -12,8 +12,10 @@ use FraudLogix\Core\Helper\ApiHelper;
 use Magento\Customer\Model\ResourceModel\Customer as CustomerResource;
 use Magento\Customer\Model\CustomerFactory;
 
-class LoginGuard
+class LoginGuard extends \FraudLogix\Core\Plugin\AbstractGuard
 {
+    protected $guadType = Config::XML_PATH_ACTION_LOGIN;
+
     /**
      * @var RemoteAddress
      */
@@ -21,7 +23,7 @@ class LoginGuard
     /**
      * @var Config
      */
-    protected Config $config;
+    // protected Config $config;
     /**
      * @var ApiHelper
      */
@@ -53,12 +55,13 @@ class LoginGuard
         Logger $logger
     ) {
         $this->remoteAddress = $remoteAddress;
-        $this->config = $config;
+        // $this->config = $config;
         $this->apiHelper = $apiHelper;
         $this->customerRepository = $customerRepository;
         $this->customerResource = $customerResource;
         $this->customerFactory = $customerFactory;
         $this->logger = $logger;
+        parent::__construct($config);
     }
 
     /**
@@ -108,6 +111,7 @@ class LoginGuard
         if (isset($riskLevels[$riskData['RiskScore']])) {
             $actionMethod = $riskLevels[$riskData['RiskScore']];
             $action = $this->config->$actionMethod();
+            $action = min($this->guardBoolean($riskData), $action);
 
             if ($action <= 1) {
                 $target->setData('fraud_risk_flag', 1);

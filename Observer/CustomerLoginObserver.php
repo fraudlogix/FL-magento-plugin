@@ -63,6 +63,7 @@ class CustomerLoginObserver implements ObserverInterface
                     403 // HTTP 403 Forbidden
                 );
             }
-        }        
+        }
+        
     }
 }

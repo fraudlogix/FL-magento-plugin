@@ -6,7 +6,7 @@ use Monolog\Logger;
 
 class LogLevel implements OptionSourceInterface
 {
-    public function toOptionArray(): array
+    public function toOptionArray()
     {
         $levels = [
             Logger::DEBUG     => 'DEBUG',

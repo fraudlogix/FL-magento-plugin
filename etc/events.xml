@@ -2,4 +2,12 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
 
+    <!-- <event name="customer_register_success">
+        <observer name="fraudlogix_core_customer_register" instance="FraudLogix\Core\Observer\CustomerRegisterObserver"/>
+    </event> -->
+
+    <!-- <event name="customer_login">
+        <observer name="fraudlogix_core_customer_login" instance="FraudLogix\Core\Observer\CustomerLoginObserver"/>
+    </event> -->
+
 </config>

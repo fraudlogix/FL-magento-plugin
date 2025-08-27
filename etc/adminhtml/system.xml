@@ -30,78 +30,171 @@
 
             <group id="actions" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>Actions regarding registration, order or login events</label>
+                <group id="registration" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Registration Actions</label>
+                    <field id="medium_level_risk" translate="label comment" sortOrder="20" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Medium Level Risk</label>
+                        <comment>Action for medium level risk event on registration.</comment>
+                        <source_model>FraudLogix\Core\Model\Config\Action</source_model>
+                    </field>
 
-                <field id="registration_low_level_risk" translate="label comment" sortOrder="10" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Registration Low Level Risk</label>
-                    <comment>Action for low level risk event on registration.</comment>
-                    <source_model>FraudLogix\Core\Model\Config\Action</source_model>
-                </field>
+                    <field id="high_level_risk" translate="label comment" sortOrder="30" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>High Level Risk</label>
+                        <comment>Action for high level risk event on registration.</comment>
+                        <source_model>FraudLogix\Core\Model\Config\Action</source_model>
+                    </field>
 
-                <field id="registration_medium_level_risk" translate="label comment" sortOrder="20" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Registration Medium Level Risk</label>
-                    <comment>Action for medium level risk event on registration.</comment>
-                    <source_model>FraudLogix\Core\Model\Config\Action</source_model>
-                </field>
+                    <field id="extreme_level_risk" translate="label comment" sortOrder="40" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Extreme Level Risk</label>
+                        <comment>Action for extreme level risk event on registration.</comment>
+                        <source_model>FraudLogix\Core\Model\Config\Action</source_model>
+                    </field>
+                    <field id="masked_device" translate="label comment" sortOrder="50" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Masked Device</label>
+                        <comment>Action for IPs with masked device.</comment>
+                        <source_model>FraudLogix\Core\Model\Config\Action</source_model>
+                    </field>
+                    <field id="proxy" translate="label comment" sortOrder="60" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Proxy</label>
+                        <comment>Action for proxied IPs.</comment>
+                        <source_model>FraudLogix\Core\Model\Config\Action</source_model>
+                    </field>
+                    <field id="tor" translate="label comment" sortOrder="70" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>TOR</label>
+                        <comment>Action for IPs with TOR.</comment>
+                        <source_model>FraudLogix\Core\Model\Config\Action</source_model>
+                    </field>
+                    <field id="vpn" translate="label comment" sortOrder="80" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>VPN</label>
+                        <comment>Action for IPs with VPN.</comment>
+                        <source_model>FraudLogix\Core\Model\Config\Action</source_model>
+                    </field>
+                    <field id="data_center" translate="label comment" sortOrder="90" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Data Center</label>
+                        <comment>Action for IPs from Data Center.</comment>
+                        <source_model>FraudLogix\Core\Model\Config\Action</source_model>
+                    </field>
+                    <field id="search_engine_bot" translate="label comment" sortOrder="100" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Search Engine Bot</label>
+                        <comment>Action for search engine bots.</comment>
+                        <source_model>FraudLogix\Core\Model\Config\Action</source_model>
+                    </field>
+                    <field id="abnormal_traffic" translate="label comment" sortOrder="110" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Abnormal Traffic</label>
+                        <comment>Action for abnormal traffics.</comment>
+                        <source_model>FraudLogix\Core\Model\Config\Action</source_model>
+                    </field>
+               </group>
+               <group id="order" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Order Actions</label>
+                    <field id="medium_level_risk" translate="label comment" sortOrder="20" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Medium Level Risk</label>
+                        <comment>Action for medium level risk event on order.</comment>
+                        <source_model>FraudLogix\Core\Model\Config\Action</source_model>
+                    </field>
 
-                <field id="registration_high_level_risk" translate="label comment" sortOrder="30" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Registration High Level Risk</label>
-                    <comment>Action for high level risk event on registration.</comment>
-                    <source_model>FraudLogix\Core\Model\Config\Action</source_model>
-                </field>
+                    <field id="high_level_risk" translate="label comment" sortOrder="30" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>High Level Risk</label>
+                        <comment>Action for high level risk event on order.</comment>
+                        <source_model>FraudLogix\Core\Model\Config\Action</source_model>
+                    </field>
 
-                <field id="registration_extreme_level_risk" translate="label comment" sortOrder="40" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Registration Extreme Level Risk</label>
-                    <comment>Action for extreme level risk event on registration.</comment>
-                    <source_model>FraudLogix\Core\Model\Config\Action</source_model>
-                </field>
+                    <field id="extreme_level_risk" translate="label comment" sortOrder="40" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Extreme Level Risk</label>
+                        <comment>Action for extreme level risk event on order.</comment>
+                        <source_model>FraudLogix\Core\Model\Config\Action</source_model>
+                    </field>
+                    <field id="masked_device" translate="label comment" sortOrder="50" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Masked Device</label>
+                        <comment>Action for IPs with masked device.</comment>
+                        <source_model>FraudLogix\Core\Model\Config\Action</source_model>
+                    </field>
+                    <field id="proxy" translate="label comment" sortOrder="60" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Proxy</label>
+                        <comment>Action for proxied IPs.</comment>
+                        <source_model>FraudLogix\Core\Model\Config\Action</source_model>
+                    </field>
+                    <field id="tor" translate="label comment" sortOrder="70" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>TOR</label>
+                        <comment>Action for IPs with TOR.</comment>
+                        <source_model>FraudLogix\Core\Model\Config\Action</source_model>
+                    </field>
+                    <field id="vpn" translate="label comment" sortOrder="80" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>VPN</label>
+                        <comment>Action for IPs with VPN.</comment>
+                        <source_model>FraudLogix\Core\Model\Config\Action</source_model>
+                    </field>
+                    <field id="data_center" translate="label comment" sortOrder="90" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Data Center</label>
+                        <comment>Action for IPs from Data Center.</comment>
+                        <source_model>FraudLogix\Core\Model\Config\Action</source_model>
+                    </field>
+                    <field id="search_engine_bot" translate="label comment" sortOrder="100" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Search Engine Bot</label>
+                        <comment>Action for search engine bots.</comment>
+                        <source_model>FraudLogix\Core\Model\Config\Action</source_model>
+                    </field>
+                    <field id="abnormal_traffic" translate="label comment" sortOrder="110" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Abnormal Traffic</label>
+                        <comment>Action for abnormal traffics.</comment>
+                        <source_model>FraudLogix\Core\Model\Config\Action</source_model>
+                    </field>
+                </group>
+                <group id="login" translate="label" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Login Actions</label>
+                    <field id="medium_level_risk" translate="label comment" sortOrder="20" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Medium Level Risk</label>
+                        <comment>Action for medium level risk event on login.</comment>
+                        <source_model>FraudLogix\Core\Model\Config\Action</source_model>
+                    </field>
 
-                <field id="order_low_level_risk" translate="label comment" sortOrder="50" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Order Low Level Risk</label>
-                    <comment>Action for low level risk event on order.</comment>
-                    <source_model>FraudLogix\Core\Model\Config\Action</source_model>
-                </field>
+                    <field id="high_level_risk" translate="label comment" sortOrder="30" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>High Level Risk</label>
+                        <comment>Action for high level risk event on login.</comment>
+                        <source_model>FraudLogix\Core\Model\Config\Action</source_model>
+                    </field>
 
-                <field id="order_medium_level_risk" translate="label comment" sortOrder="60" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Order Medium Level Risk</label>
-                    <comment>Action for medium level risk event on order.</comment>
-                    <source_model>FraudLogix\Core\Model\Config\Action</source_model>
-                </field>
-
-                <field id="order_high_level_risk" translate="label comment" sortOrder="70" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Order High Level Risk</label>
-                    <comment>Action for high level risk event on order.</comment>
-                    <source_model>FraudLogix\Core\Model\Config\Action</source_model>
-                </field>
-
-                <field id="order_extreme_level_risk" translate="label comment" sortOrder="80" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Order Extreme Level Risk</label>
-                    <comment>Action for extreme level risk event on order.</comment>
-                    <source_model>FraudLogix\Core\Model\Config\Action</source_model>
-                </field>
-
-                <field id="login_low_level_risk" translate="label comment" sortOrder="90" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Login Low Level Risk</label>
-                    <comment>Action for low level risk event on login.</comment>
-                    <source_model>FraudLogix\Core\Model\Config\Action</source_model>
-                </field>
-
-                <field id="login_medium_level_risk" translate="label comment" sortOrder="100" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Login Medium Level Risk</label>
-                    <comment>Action for medium level risk event on login.</comment>
-                    <source_model>FraudLogix\Core\Model\Config\Action</source_model>
-                </field>
-
-                <field id="login_high_level_risk" translate="label comment" sortOrder="110" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Login High Level Risk</label>
-                    <comment>Action for high level risk event on login.</comment>
-                    <source_model>FraudLogix\Core\Model\Config\Action</source_model>
-                </field>
-
-                <field id="login_extreme_level_risk" translate="label comment" sortOrder="120" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Login Extreme Level Risk</label>
-                    <comment>Action for extreme level risk event on login.</comment>
-                    <source_model>FraudLogix\Core\Model\Config\Action</source_model>
-                </field>
+                    <field id="extreme_level_risk" translate="label comment" sortOrder="40" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Extreme Level Risk</label>
+                        <comment>Action for extreme level risk event on login.</comment>
+                        <source_model>FraudLogix\Core\Model\Config\Action</source_model>
+                    </field>
+                    <field id="masked_device" translate="label comment" sortOrder="50" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Masked Device</label>
+                        <comment>Action for IPs with masked device.</comment>
+                        <source_model>FraudLogix\Core\Model\Config\Action</source_model>
+                    </field>
+                    <field id="proxy" translate="label comment" sortOrder="60" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Proxy</label>
+                        <comment>Action for proxied IPs.</comment>
+                        <source_model>FraudLogix\Core\Model\Config\Action</source_model>
+                    </field>
+                    <field id="tor" translate="label comment" sortOrder="70" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>TOR</label>
+                        <comment>Action for IPs with TOR.</comment>
+                        <source_model>FraudLogix\Core\Model\Config\Action</source_model>
+                    </field>
+                    <field id="vpn" translate="label comment" sortOrder="80" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>VPN</label>
+                        <comment>Action for IPs with VPN.</comment>
+                        <source_model>FraudLogix\Core\Model\Config\Action</source_model>
+                    </field>
+                    <field id="data_center" translate="label comment" sortOrder="90" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Data Center</label>
+                        <comment>Action for IPs from Data Center.</comment>
+                        <source_model>FraudLogix\Core\Model\Config\Action</source_model>
+                    </field>
+                    <field id="search_engine_bot" translate="label comment" sortOrder="100" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Search Engine Bot</label>
+                        <comment>Action for search engine bots.</comment>
+                        <source_model>FraudLogix\Core\Model\Config\Action</source_model>
+                    </field>
+                    <field id="abnormal_traffic" translate="label comment" sortOrder="110" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Abnormal Traffic</label>
+                        <comment>Action for abnormal traffics.</comment>
+                        <source_model>FraudLogix\Core\Model\Config\Action</source_model>
+                    </field>
+                </group>
             </group>
 
             <group id="logging" translate="label" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">

@@ -12,23 +12,37 @@ class Config
     private const XML_PATH_LOG_LEVEL = 'fraudlogix/logging/log_level';
     private const XML_PATH_LOG_ENABLED = 'fraudlogix/logging/enabled';
 
-    private const XML_PATH_ACTIONS_REGISTRATION_LOW_RISK = 'fraudlogix/actions/registration_low_level_risk';
-    private const XML_PATH_ACTIONS_REGISTRATION_MEDIUM_RISK = 'fraudlogix/actions/registration_medium_level_risk';
-    private const XML_PATH_ACTIONS_REGISTRATION_HIGH_RISK = 'fraudlogix/actions/registration_high_level_risk';
-    private const XML_PATH_ACTIONS_REGISTRATION_EXTREME_RISK = 'fraudlogix/actions/registration_extreme_level_risk';
+    private const XML_PATH_ACTIONS_REGISTRATION_LOW_RISK = 'fraudlogix/actions/registration/low_level_risk';
+    private const XML_PATH_ACTIONS_REGISTRATION_MEDIUM_RISK = 'fraudlogix/actions/registration/medium_level_risk';
+    private const XML_PATH_ACTIONS_REGISTRATION_HIGH_RISK = 'fraudlogix/actions/registration/high_level_risk';
+    private const XML_PATH_ACTIONS_REGISTRATION_EXTREME_RISK = 'fraudlogix/actions/registration/extreme_level_risk';
 
-    private const XML_PATH_ACTIONS_LOGIN_LOW_RISK = 'fraudlogix/actions/login_low_level_risk';
-    private const XML_PATH_ACTIONS_LOGIN_MEDIUM_RISK = 'fraudlogix/actions_login_medium_level_risk';
-    private const XML_PATH_ACTIONS_LOGIN_HIGH_RISK = 'fraudlogix/actions/login_high_level_risk';
-    private const XML_PATH_ACTIONS_LOGIN_EXTREME_RISK = 'fraudlogix/actions/login_extreme_level_risk';
+    private const XML_PATH_ACTIONS_LOGIN_LOW_RISK = 'fraudlogix/actions/login/low_level_risk';
+    private const XML_PATH_ACTIONS_LOGIN_MEDIUM_RISK = 'fraudlogix/actions/login/medium_level_risk';
+    private const XML_PATH_ACTIONS_LOGIN_HIGH_RISK = 'fraudlogix/actions/login/high_level_risk';
+    private const XML_PATH_ACTIONS_LOGIN_EXTREME_RISK = 'fraudlogix/actions/login/extreme_level_risk';
 
-    private const XML_PATH_ACTIONS_CHECKOUT_LOW_RISK = 'fraudlogix/actions/order_low_level_risk';
-    private const XML_PATH_ACTIONS_CHECKOUT_MEDIUM_RISK = 'fraudlogix/actions/order_medium_level_risk';
-    private const XML_PATH_ACTIONS_CHECKOUT_HIGH_RISK = 'fraudlogix/actions/order_high_level_risk';
-    private const XML_PATH_ACTIONS_CHECKOUT_EXTREME_RISK = 'fraudlogix/actions/order_extreme_level_risk';
+    private const XML_PATH_ACTIONS_CHECKOUT_LOW_RISK = 'fraudlogix/actions/order/low_level_risk';
+    private const XML_PATH_ACTIONS_CHECKOUT_MEDIUM_RISK = 'fraudlogix/actions/order/medium_level_risk';
+    private const XML_PATH_ACTIONS_CHECKOUT_HIGH_RISK = 'fraudlogix/actions/order/high_level_risk';
+    private const XML_PATH_ACTIONS_CHECKOUT_EXTREME_RISK = 'fraudlogix/actions/order/extreme_level_risk';
 
     private const XML_PATH_DEV_ENABLE= 'fraudlogix/dev/enable_dev_mode';
     private const XML_PATH_DEV_IP = 'fraudlogix/dev/dev_ip';
+
+    private const XML_PATH_CORE_ACTION_PATH = 'fraudlogix/actions';
+
+    public const XML_PATH_ACTION_REGISTRATION = 'registration';
+    public const XML_PATH_ACTION_LOGIN = 'login';
+    public const XML_PATH_ACTION_CHECKOUT = 'checkout';
+
+    private const XML_PATH_ACTION_MASKED_DEVICE = 'masked_device';
+    private const XML_PATH_ACTION_PROXY = 'proxy';
+    private const XML_PATH_ACTION_VPN = 'vpn';
+    private const XML_PATH_ACTION_TOR = 'tor';
+    private const XML_PATH_ACTION_DATA_CENTER = 'data_center';
+    private const XML_PATH_ACTION_SEARCH_ENGINE_BOT = 'search_engine_bot';
+    private const XML_PATH_ACTION_ABNORMAL_TRAFFIC = 'abnormal_traffic';
 
 
     private ScopeConfigInterface $scopeConfig;
@@ -62,7 +76,8 @@ class Config
 
     public function registrationLowRiskAction(): int
     {
-        return (int)$this->scopeConfig->getValue(self::XML_PATH_ACTIONS_REGISTRATION_LOW_RISK, ScopeInterface::SCOPE_STORE);
+        // Alway allow low risk registrations
+        return 2;
     }
 
     public function registrationMediumRiskAction(): int
@@ -82,7 +97,8 @@ class Config
 
     public function loginLowRiskAction(): int
     {
-        return (int)$this->scopeConfig->getValue(self::XML_PATH_ACTIONS_LOGIN_LOW_RISK, ScopeInterface::SCOPE_STORE);
+        // Always allow low risk logins
+        return 2;
     }
 
     public function loginMediumRiskAction(): int
@@ -102,7 +118,8 @@ class Config
 
     public function checkoutLowRiskAction(): int
     {
-        return (int)$this->scopeConfig->getValue(self::XML_PATH_ACTIONS_CHECKOUT_LOW_RISK, ScopeInterface::SCOPE_STORE);
+        // Alway allow low risk orders
+        return 2;
     }
 
     public function checkoutMediumRiskAction(): int
@@ -129,5 +146,105 @@ class Config
     {
         return (string)$this->scopeConfig->getValue(self::XML_PATH_DEV_IP, ScopeInterface::SCOPE_STORE);
     }
+
+    public function getMaskedDeviceAction(string $pathType): int
+    {
+        if ($pathType !== self::XML_PATH_ACTION_REGISTRATION
+            && $pathType !== self::XML_PATH_ACTION_LOGIN
+            && $pathType !== self::XML_PATH_ACTION_CHECKOUT) {
+            throw new \InvalidArgumentException('Invalid path type provided');
+        }
+        $path = self::XML_PATH_CORE_ACTION_PATH . '/' . $pathType . '/' . self::XML_PATH_ACTION_MASKED_DEVICE;
+        return (int)$this->scopeConfig->getValue(
+            $path,
+            ScopeInterface::SCOPE_STORE
+        );
+    }
+
+    public function getProxyAction(string $pathType): int
+    {
+        if ($pathType !== self::XML_PATH_ACTION_REGISTRATION
+            && $pathType !== self::XML_PATH_ACTION_LOGIN
+            && $pathType !== self::XML_PATH_ACTION_CHECKOUT) {
+            throw new \InvalidArgumentException('Invalid path type provided');
+        }
+        $path = self::XML_PATH_CORE_ACTION_PATH . '/' . $pathType . '/' . self::XML_PATH_ACTION_PROXY;
+        return (int)$this->scopeConfig->getValue(
+            $path,
+            ScopeInterface::SCOPE_STORE
+        );
+    }
+
+    public function getVpnAction(string $pathType): int
+    {
+        if ($pathType !== self::XML_PATH_ACTION_REGISTRATION
+            && $pathType !== self::XML_PATH_ACTION_LOGIN
+            && $pathType !== self::XML_PATH_ACTION_CHECKOUT) {
+            throw new \InvalidArgumentException('Invalid path type provided');
+        }
+        $path = self::XML_PATH_CORE_ACTION_PATH . '/' . $pathType . '/' . self::XML_PATH_ACTION_VPN;
+        return (int)$this->scopeConfig->getValue(
+            $path,
+            ScopeInterface::SCOPE_STORE
+        );
+    }
+
+    public function getTorAction(string $pathType): int
+    {
+        if ($pathType !== self::XML_PATH_ACTION_REGISTRATION
+            && $pathType !== self::XML_PATH_ACTION_LOGIN
+            && $pathType !== self::XML_PATH_ACTION_CHECKOUT) {
+            throw new \InvalidArgumentException('Invalid path type provided');
+        }
+        $path = self::XML_PATH_CORE_ACTION_PATH . '/' . $pathType . '/' . self::XML_PATH_ACTION_TOR;
+        return (int)$this->scopeConfig->getValue(
+            $path,
+            ScopeInterface::SCOPE_STORE
+        );
+    }
+
+    public function getDataCenterAction(string $pathType): int
+    {
+        if ($pathType !== self::XML_PATH_ACTION_REGISTRATION
+            && $pathType !== self::XML_PATH_ACTION_LOGIN
+            && $pathType !== self::XML_PATH_ACTION_CHECKOUT) {
+            throw new \InvalidArgumentException('Invalid path type provided');
+        }
+        $path = self::XML_PATH_CORE_ACTION_PATH . '/' . $pathType . '/' . self::XML_PATH_ACTION_DATA_CENTER;
+        return (int)$this->scopeConfig->getValue(
+            $path,
+            ScopeInterface::SCOPE_STORE
+        );
+    }
+
+    public function getSearchEngineBotAction(string $pathType): int
+    {
+        if ($pathType !== self::XML_PATH_ACTION_REGISTRATION
+            && $pathType !== self::XML_PATH_ACTION_LOGIN
+            && $pathType !== self::XML_PATH_ACTION_CHECKOUT) {
+            throw new \InvalidArgumentException('Invalid path type provided');
+        }
+        $path = self::XML_PATH_CORE_ACTION_PATH . '/' . $pathType . '/' . self::XML_PATH_ACTION_SEARCH_ENGINE_BOT;
+        return (int)$this->scopeConfig->getValue(
+            $path,
+            ScopeInterface::SCOPE_STORE
+        );
+    }
+
+    public function getAbnormalTrafficAction(string $pathType): int
+    {
+        if ($pathType !== self::XML_PATH_ACTION_REGISTRATION
+            && $pathType !== self::XML_PATH_ACTION_LOGIN
+            && $pathType !== self::XML_PATH_ACTION_CHECKOUT) {
+            throw new \InvalidArgumentException('Invalid path type provided');
+        }
+        $path = self::XML_PATH_CORE_ACTION_PATH . '/' . $pathType . '/' . self::XML_PATH_ACTION_ABNORMAL_TRAFFIC;
+        return (int)$this->scopeConfig->getValue(
+            $path,
+            ScopeInterface::SCOPE_STORE
+        );
+    }
+
+
 
 }
