@@ -21,6 +21,13 @@ app/code/FraudLogix/Core
 2. Copy the module code into that folder (must include registration.php and etc/module.xml).
 3. Continue with "Enable & Register".
 
+### Composer (recommended)
+1. Run from magento root
+```bash
+composer require fraudlogix/module-core
+```
+2. Continue with "Enable & Register".
+
 ## Enable & Register
 Run from Magento root:
 ```bash
@@ -83,6 +90,18 @@ Production mode (recommended for live sites):
 ```bash
 bin/magento setup:static-content:deploy
 ```
+### Composer installs:
+Run from magento root
+```bash
+composer update fraudlogix/module-core
+bin/magento setup:upgrade
+bin/magento setup:di:compile
+bin/magento cache:flush
+```
+Production mode (recommended for live sites):
+```bash
+bin/magento setup:static-content:deploy
+```
 
 ## Uninstalling
 > **Backup first.** Ensure no other modules depend on FraudLogix_Core.
@@ -92,6 +111,18 @@ bin/magento module:disable FraudLogix_Core
 rm -rf app/code/FraudLogix/Core
 bin/magento setup:upgrade
 bin/magento cache:flush
+```
+Production mode (recommended for live sites):
+```bash
+bin/magento setup:static-content:deploy
+```
+### Composer-based:
+```bash
+bin/magento module:disable FraudLogix_Core
+composer remove fraudlogix/module-core
+bin/magento setup:upgrade
+bin/magento cache:flush
+```
 Production mode (recommended for live sites):
 ```bash
 bin/magento setup:static-content:deploy
